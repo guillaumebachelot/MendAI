@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MendAI Labs — The Virtual Scientist for Spectrometry</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+</head>
+<body>
+  <div id="scroll-progress"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="assets/images/logo.png" alt="MendAI Labs" class="nav-logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <span class="nav-logo-fallback"><span class="logo-dot"></span>MendAI <strong>Labs</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#milestones">Milestones</a></li>
+        <li><a href="#contact" class="btn-nav">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Montreal · AI · Precision Diagnostics</p>
+        <h1>The Virtual Scientist<br /><span class="accent">for Spectrometry</span></h1>
+        <p class="hero-sub">
+          MendAI Labs develops an AI agent that automates advanced laboratory
+          instruments — configuring, analyzing, and optimizing in real time to
+          bring high-precision diagnostics to the clinic.
+        </p>
+        <div class="hero-cta">
+          <a href="#solution" class="btn-primary">Discover Our Solution</a>
+          <a href="#team" class="btn-ghost">Meet the Team</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-icon">🔬</div>
+          <p class="hero-card-stat">+$600k / year<span class="footnote-mark">*</span></p>
+          <p class="hero-card-label">additional revenue per clinical platform</p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-icon">⚡</div>
+          <p class="hero-card-stat">Up to 90%</p>
+          <p class="hero-card-label">of signal analysis automated</p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-icon">📅</div>
+          <p class="hero-card-stat">Days → Hours<span class="footnote-mark">*</span></p>
+          <p class="hero-card-label">method development accelerated</p>
+        </div>
+        <p class="hero-footnote">* Estimates based on the McGill Cancer Centre metabolomics platform (25 samples/day, expert time as bottleneck).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission section-light" id="mission">
+    <div class="container">
+      <div class="mission-grid">
+        <div class="mission-left">
+          <span class="section-tag">Our Mission</span>
+          <h2>Every patient deserves<br /><span class="accent">high-precision testing</span></h2>
+          <p>
+            Studying our genes alone cannot explain all the diseases that develop
+            over a lifetime. While genomics maps potential risks,
+            <strong>proteins and small molecules reflect the patient's real-time
+            biological state</strong>.
+          </p>
+          <p>
+            Diagnostic tests based on measuring these molecules have already been
+            shown to <strong>triple survival rates</strong> for certain types of cancer.
+            Yet spectrometry — the core technology behind these tests — remains
+            challenging to master, limiting widespread clinical adoption.
+          </p>
+          <blockquote class="pull-quote">
+            "We believe every patient deserves high-precision testing to better
+            understand their biological state and guide more informed medical
+            decisions."
+          </blockquote>
+        </div>
+        <div class="mission-right">
+          <div class="problem-box">
+            <h3>The Problem</h3>
+            <div class="problem-item">
+              <span class="problem-icon">🎓</span>
+              <div>
+                <strong>Technical barrier</strong>
+                <p>Highly demanding instruments requiring PhD-level experts, who are in global shortage.</p>
+              </div>
+            </div>
+            <div class="problem-item">
+              <span class="problem-icon">📊</span>
+              <div>
+                <strong>Data complexity</strong>
+                <p>Noisy raw signals that are difficult to interpret, slowing the conversion to clinical insights.</p>
+              </div>
+            </div>
+            <div class="problem-item">
+              <span class="problem-icon">🔁</span>
+              <div>
+                <strong>Development bottleneck</strong>
+                <p>New analytical methods demand weeks of literature review and labor-intensive optimization.</p>
+              </div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-box">
+              <p class="stat-number">&gt;100,000</p>
+              <p class="stat-desc">spectrometers installed worldwide</p>
+            </div>
+            <div class="stat-box">
+              <p class="stat-number">$31B</p>
+              <p class="stat-desc">global protein &amp; small molecule analysis market</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="vision section-mid">
+    <div class="container center">
+      <p class="vision-statement">
+        <span class="accent">MendAI Labs delivers the clinical precision and automated infrastructure required to power the next wave of biotech innovation.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="solution section-dark" id="solution">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag-dark">Our Solution</span>
+        <h2>A Virtual Scientist for Spectrometry</h2>
+        <p class="section-intro">
+          MendAI Labs develops an AI agent, connected to scientific knowledge,
+          that interacts with laboratory instruments in real time — configuring
+          the instrument, analyzing results, re-running analyses when needed,
+          and identifying the molecules present.
+        </p>
+      </div>
+
+      <div class="cycle-diagram">
+        <svg class="cycle-svg" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr-white" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="rgba(255,255,255,0.5)" />
+            </marker>
+            <marker id="arr-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="rgba(37,99,235,0.9)" />
+            </marker>
+          </defs>
+          <!-- Background ring -->
+          <circle cx="240" cy="240" r="155" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5" />
+          <!-- Arc 1: GENESIS → Instrument -->
+          <path d="M 293 94 A 155 155 0 0 1 386 187" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" marker-end="url(#arr-white)" />
+          <!-- Arc 2: Instrument → PRISM -->
+          <path d="M 386 293 A 155 155 0 0 1 293 386" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" marker-end="url(#arr-white)" />
+          <!-- Arc 3: PRISM → HELIX -->
+          <path d="M 187 386 A 155 155 0 0 1 94 293" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" marker-end="url(#arr-white)" />
+          <!-- Arc 4: HELIX → GENESIS (feedback loop, orange dashed) -->
+          <path d="M 94 187 A 155 155 0 0 1 187 94" fill="none" stroke="rgba(37,99,235,0.7)" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr-orange)" />
+          <!-- Center text -->
+          <text x="240" y="233" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-size="12" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="3">VIRTUAL</text>
+          <text x="240" y="252" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-size="12" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="3">SCIENTIST</text>
+        </svg>
+
+        <!-- GENESIS — top (12 o'clock) -->
+        <div class="cycle-node cycle-top">
+          <div class="wf-icon genesis-icon">G</div>
+          <div class="cycle-label">GENESIS<br/><small>1st initialization</small></div>
+        </div>
+        <!-- Instrument — right (3 o'clock) -->
+        <div class="cycle-node cycle-right">
+          <div class="wf-icon instrument-icon">⚙</div>
+          <div class="cycle-label">Instrument<br/><small>runs analysis</small></div>
+        </div>
+        <!-- PRISM — bottom (6 o'clock) -->
+        <div class="cycle-node cycle-bottom">
+          <div class="wf-icon prism-icon">P</div>
+          <div class="cycle-label">PRISM<br/><small>scores results</small></div>
+        </div>
+        <!-- HELIX — left (9 o'clock) -->
+        <div class="cycle-node cycle-left">
+          <div class="wf-icon helix-icon">H</div>
+          <div class="cycle-label">HELIX<br/><small>refines parameters</small></div>
+        </div>
+      </div>
+
+      <div class="modules">
+        <div class="module-card">
+          <div class="module-badge prism-badge">
+            <img src="assets/images/prism.png" alt="PRISM" class="badge-logo-img" onerror="this.replaceWith(document.createTextNode('PRISM'))" />
+          </div>
+          <h3>Advanced Signal Processing</h3>
+          <p class="module-tag">Analyzes raw signals to extract clinically relevant information.</p>
+          <ul>
+            <li>Analyzes entire batches — not samples individually — to correct statistical biases and instrument drift</li>
+            <li>Continuously learns locally from user feedback</li>
+            <li>Automates up to <strong>90% of signal processing</strong></li>
+          </ul>
+          <div class="module-value">
+            <span class="value-chip">+$600k / year</span> per clinical platform<span class="footnote-mark">*</span>
+          </div>
+        </div>
+
+        <div class="module-card module-card-highlight">
+          <div class="module-badge helix-badge">
+            <img src="assets/images/helix.png" alt="HELIX" class="badge-logo-img" onerror="this.replaceWith(document.createTextNode('HELIX'))" />
+          </div>
+          <h3>Real-Time Control Engine</h3>
+          <p class="module-tag">Autonomous instrument control that continuously optimizes analytical methods.</p>
+          <ul>
+            <li>Leverages Bayesian optimization to dynamically adjust acquisition parameters in real time</li>
+            <li>Autonomously refines experimental methods without human intervention</li>
+            <li>Transforms method development into an <strong>autonomous process</strong></li>
+          </ul>
+          <div class="module-value">
+            <span class="value-chip">+$300k / year</span> in method development<span class="footnote-mark">*</span>
+          </div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-badge genesis-badge">
+            <img src="assets/images/genesis.png" alt="GENESIS" class="badge-logo-img" onerror="this.replaceWith(document.createTextNode('GENESIS'))" />
+          </div>
+          <h3>AI-Driven Method Design</h3>
+          <p class="module-tag">Automatically generates sample preparation protocols and acquisition methods.</p>
+          <ul>
+            <li>LLM-based agent connected to the scientific literature and manufacturers' application notes</li>
+            <li>Reduces method development from <strong>days to minutes</strong></li>
+            <li>No prior expert configuration required</li>
+          </ul>
+          <div class="module-value">
+            <span class="value-chip">Minutes</span> vs. days of development
+          </div>
+        </div>
+      </div>
+
+      <p class="modules-footnote">* Estimates based on the McGill Cancer Centre metabolomics platform as a representative example (25 samples/day, bottleneck: expert time). See <a href="https://www.mcgill.ca/mmsp/service-rate" target="_blank" rel="noopener">McGill MMSP service rates</a>.</p>
+
+      <div class="pilot-banner">
+        <p>
+          🧪 <strong>Pilot projects secured</strong> — Two agreements in targeted metabolomics
+          (most widely adopted clinical application of spectrometry).
+          PRISM validation begins <strong>April 2026</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team section-light" id="team">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">The Team</span>
+        <h2>An Interdisciplinary Founding Team</h2>
+        <p class="section-intro">
+          MendAI Labs emerged from Guillaume and Paul meeting at Mila in 2025.
+          We united around a shared belief: meaningful impact on patient health
+          requires multidisciplinary expertise and a nuanced understanding of
+          clinical needs.
+        </p>
+      </div>
+
+      <div class="founders">
+        <div class="founder-card">
+          <div class="founder-avatar photo">
+            <img src="assets/images/paul.jpg" alt="Paul Bertin" onerror="this.parentElement.textContent='PB'" />
+          </div>
+          <h3>Paul Bertin</h3>
+          <p class="founder-title">PhD — Co-founder &amp; CEO</p>
+          <p class="founder-affil">Mila · Université de Montréal · École Polytechnique Paris-Saclay</p>
+          <p>
+            PhD at Mila under the supervision of Prof. Yoshua Bengio, focused on
+            modelling cellular responses to biological perturbations. Developed an
+            iterative approach prospectively validated in collaboration with a
+            chemical biology team, and designed interpretable generative models for
+            large-scale omics data.
+          </p>
+          <p class="founder-italic">
+            MendAI's technical and scientific foundations build directly on the
+            expertise developed at the intersection of deep learning and biology.
+          </p>
+        </div>
+
+        <div class="founder-card">
+          <div class="founder-avatar gb photo">
+            <img src="assets/images/guillaume.jpg" alt="Guillaume Bachelot" onerror="this.parentElement.textContent='GB'" />
+          </div>
+          <h3>Guillaume Bachelot</h3>
+          <p class="founder-title">PharmD, PhD — Co-founder &amp; CSO</p>
+          <p class="founder-affil">AP-HP · Sorbonne Université · Mila</p>
+          <p>
+            Six years of experience as a hospital practitioner at the Paris
+            university hospitals and Sorbonne University. Led translational research
+            initiatives within the spectrometry platform at Saint-Antoine Hospital,
+            and developed innovative diagnostic tests integrating machine learning
+            and spectrometry.
+          </p>
+          <p class="founder-italic">
+            This dual clinical and scientific expertise underpins the medical
+            relevance and real-world applicability of all solutions developed at
+            MendAI Labs.
+          </p>
+        </div>
+      </div>
+
+      <div class="partners-section">
+        <h3 class="partners-title">Scientific &amp; Strategic Partners</h3>
+        <div class="partners-grid">
+          <div class="partner-card">
+            <div class="partner-avatar">JC</div>
+            <p class="partner-name">Jacques Corbeil</p>
+            <p class="partner-role">Professor of Medicine, Research Chair in Medical Genomics</p>
+          </div>
+          <div class="partner-card">
+            <div class="partner-avatar">AL</div>
+            <p class="partner-name">Alexandre Le Bouthillier</p>
+            <p class="partner-role">Member of the Mila Board of Directors — Investor &amp; Entrepreneur</p>
+          </div>
+          <div class="partner-card">
+            <div class="partner-avatar">AL2</div>
+            <p class="partner-name">Antonin Lamazière</p>
+            <p class="partner-role">Head of Clinical Metabolomics, Saint-Antoine Hospital</p>
+          </div>
+          <div class="partner-card">
+            <div class="partner-avatar">SU</div>
+            <p class="partner-name">Sorbonne Université</p>
+            <p class="partner-role">Partner institution for PRISM &amp; HELIX validation — clinical research expertise</p>
+          </div>
+        </div>
+
+        <div class="backing-row">
+          <div class="backing-item">
+            <span class="backing-icon">🏢</span>
+            <div>
+              <strong>Mila Ventures</strong>
+              <p>Two-year incubation (starting January 2026) — access to top AI talent and computing infrastructure</p>
+            </div>
+          </div>
+          <div class="backing-item">
+            <span class="backing-icon">🏆</span>
+            <div>
+              <strong>Centech Acceleration Program</strong>
+              <p>Alumni (Fall 2025) — Centech Entrepreneurs-in-Residence: Patrick d'Astous (EY), François Drolet (Medtronic / Roche)</p>
+            </div>
+          </div>
+          <div class="backing-item">
+            <span class="backing-icon">🎓</span>
+            <div>
+              <strong>IVADO Entrepreneurial Fellowship</strong>
+              <p>Awarded to Paul (starting January 2026) — recognizing scientific rigour and commercial potential</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MILESTONES -->
+  <section class="milestones section-mid" id="milestones">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">Traction &amp; Roadmap</span>
+        <h2>Milestones &amp; What's Next</h2>
+      </div>
+
+      <div class="milestones-timeline">
+        <div class="timeline-node">
+          <div class="timeline-year">2026</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Validation</h4>
+            <ul>
+              <li>PRISM validation at Sorbonne</li>
+              <li>Begin HELIX development</li>
+              <li>Pilot projects at McGill / St-Antoine</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-year">2027</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Launch</h4>
+            <ul>
+              <li>PRISM + HELIX commercialization (B2B)</li>
+              <li>PRISM &amp; HELIX pilot deployment</li>
+              <li>OEM manufacturer negotiations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-year">2028</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4>Scaling</h4>
+            <ul>
+              <li>GENESIS development &amp; validation</li>
+              <li>Native OEM integration (B2B2B)</li>
+              <li>Clinical market expansion</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="market-banner">
+        <div class="market-stat">
+          <p class="market-num">$7B → $15B</p>
+          <p class="market-label">Global spectrometry market (2023 → 2029)</p>
+        </div>
+        <div class="market-stat">
+          <p class="market-num">&gt;$6B</p>
+          <p class="market-label">Serviceable Addressable Market (LC-MS, 2026)</p>
+        </div>
+        <div class="market-stat">
+          <p class="market-num">$300M</p>
+          <p class="market-label">MendAI target revenue (5% SAM capture)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section-dark" id="contact">
+    <div class="container center">
+      <span class="section-tag-dark">Get in Touch</span>
+      <h2>Together, let's democratize patient<br />access to high-precision testing.</h2>
+      <p class="contact-sub">
+        Whether you run a spectrometry platform, work in clinical research, or are
+        a potential partner — we'd love to connect.
+      </p>
+      <a href="mailto:contact@mendailabs.com" class="btn-primary btn-large">contact@mendailabs.com</a>
+    </div>
+  </section>
+
+  <!-- INSTITUTIONS & PARTNERS -->
+  <section class="logos-section">
+    <div class="container">
+      <p class="logos-title">Supported by</p>
+      <div class="logos-grid">
+        <div class="logo-item">
+          <img src="assets/images/x.png" alt="X" class="partner-logo" />
+        </div>
+        <div class="logo-item">
+          <img src="assets/images/udm.png" alt="Université de Montréal" class="partner-logo" />
+        </div>
+        <div class="logo-item">
+          <img src="assets/images/ivado.png" alt="IVADO" class="partner-logo" />
+        </div>
+        <div class="logo-item">
+          <img src="assets/images/mila.png" alt="Mila" class="partner-logo" />
+        </div>
+        <div class="logo-item">
+          <img src="assets/images/centech.png" alt="Centech" class="partner-logo" />
+        </div>
+        <div class="logo-item">
+          <img src="assets/images/su.png" alt="Sorbonne Université" class="partner-logo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="nav-logo">
+        <img src="assets/images/logo.png" alt="MendAI Labs" class="nav-logo-img footer-logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <span class="nav-logo-fallback"><span class="logo-dot"></span>MendAI <strong>Labs</strong></span>
+      </span>
+      <p>Montreal · Mila Ventures Incubatee · © 2026 MendAI Labs. All rights reserved.</p>
+      <p class="footer-disclaimer">Company overview — Confidential</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
