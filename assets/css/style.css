@@ -581,6 +581,17 @@ section { padding: 96px 0; }
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 12px;
 }
+.partner-avatar.photo {
+  overflow: hidden;
+  padding: 0;
+}
+.partner-avatar.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
 .partner-name { font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 4px; }
 .partner-role { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
 
