@@ -757,6 +757,46 @@ section { padding: 96px 0; }
 .footer-disclaimer { font-style: italic; }
 .footer .nav-logo { color: rgba(255,255,255,.7); font-size: 1rem; }
 
+/* Social links for LinkedIn */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  transition: opacity 0.3s ease;
+  vertical-align: middle;
+}
+.social-link:hover {
+  opacity: 0.8;
+}
+.social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Footer social link */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s ease;
+  padding: 4px;
+}
+.footer-social:hover {
+  color: #0A66C2;
+}
+.footer-social svg {
+  width: 24px;
+  height: 24px;
+}
+
 /* =====================================================
    RESPONSIVE
    ===================================================== */
