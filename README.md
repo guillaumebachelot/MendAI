@@ -6,10 +6,28 @@ Company website for [MendAI Labs](https://mendailabs.com), a Montreal-based AI s
 
 ```
 mendai-website/
-├── index.html       # Main page
-├── css/             # Stylesheets
-├── js/              # Scripts
-└── images/          # Assets
+├── index.html
+├── README.md
+└── assets/
+    ├── css/
+    │   ├── style.css
+    │   └── animations.css
+    ├── js/
+    │   └── main.js
+    └── images/
+        ├── logo.png
+        ├── paul.jpg
+        ├── guillaume.jpg
+        ├── prism.png
+        ├── helix.png
+        ├── genesis.png
+        ├── mila.png
+        ├── ivado.png
+        ├── centech.png
+        ├── aphp.png
+        ├── su.png
+        ├── udm.png
+        └── x.png
 ```
 
 ## Stack
