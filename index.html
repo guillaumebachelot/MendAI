@@ -145,6 +145,7 @@
       <div class="section-header center">
         <span class="section-tag-dark">Our Solution</span>
         <h2>A Virtual Scientist for Spectrometry</h2>
+        <div class="section-line"></div>
         <p class="section-intro">
           MendAI Labs develops an AI agent, connected to scientific knowledge,
           that interacts with laboratory instruments in real time — configuring
@@ -172,7 +173,9 @@
           <!-- Arc 3: PRISM → HELIX -->
           <path d="M 187 386 A 155 155 0 0 1 94 293" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" marker-end="url(#arr-white)" />
           <!-- Arc 4: HELIX → GENESIS (feedback loop, orange dashed) -->
-          <path d="M 94 187 A 155 155 0 0 1 187 94" fill="none" stroke="rgba(37,99,235,0.7)" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr-orange)" />
+          <path class="orange-arc" d="M 94 187 A 155 155 0 0 1 187 94" fill="none" stroke="rgba(37,99,235,0.7)" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr-orange)" />
+          <!-- Arc 5: HELIX → Instrument (curved shortcut, orange dashed) -->
+          <path class="orange-arc" d="M 120 240 Q 240 130 360 240" fill="none" stroke="rgba(37,99,235,0.7)" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr-orange)" />
           <!-- Center text -->
           <text x="240" y="233" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-size="12" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="3">VIRTUAL</text>
           <text x="240" y="252" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-size="12" font-family="system-ui,sans-serif" font-weight="700" letter-spacing="3">SCIENTIST</text>
@@ -203,7 +206,8 @@
       <div class="modules">
         <div class="module-card">
           <div class="module-badge prism-badge">
-            <img src="assets/images/prism.png" alt="PRISM" class="badge-logo-img" onerror="this.replaceWith(document.createTextNode('PRISM'))" />
+            <img src="assets/images/prism.png" alt="PRISM" class="badge-logo-img" onerror="this.style.display='none'" />
+            <span class="badge-name">PRISM</span>
           </div>
           <h3>Advanced Signal Processing</h3>
           <p class="module-tag">Analyzes raw signals to extract clinically relevant information.</p>
@@ -219,7 +223,8 @@
 
         <div class="module-card module-card-highlight">
           <div class="module-badge helix-badge">
-            <img src="assets/images/helix.png" alt="HELIX" class="badge-logo-img" onerror="this.replaceWith(document.createTextNode('HELIX'))" />
+            <img src="assets/images/helix.png" alt="HELIX" class="badge-logo-img" onerror="this.style.display='none'" />
+            <span class="badge-name">HELIX</span>
           </div>
           <h3>Real-Time Control Engine</h3>
           <p class="module-tag">Autonomous instrument control that continuously optimizes analytical methods.</p>
@@ -235,7 +240,8 @@
 
         <div class="module-card">
           <div class="module-badge genesis-badge">
-            <img src="assets/images/genesis.png" alt="GENESIS" class="badge-logo-img" onerror="this.replaceWith(document.createTextNode('GENESIS'))" />
+            <img src="assets/images/genesis.png" alt="GENESIS" class="badge-logo-img" onerror="this.style.display='none'" />
+            <span class="badge-name">GENESIS</span>
           </div>
           <h3>AI-Driven Method Design</h3>
           <p class="module-tag">Automatically generates sample preparation protocols and acquisition methods.</p>
@@ -268,6 +274,7 @@
       <div class="section-header center">
         <span class="section-tag">The Team</span>
         <h2>An Interdisciplinary Founding Team</h2>
+        <div class="section-line"></div>
         <p class="section-intro">
           MendAI Labs emerged from Guillaume and Paul meeting at Mila in 2025.
           We united around a shared belief: meaningful impact on patient health
@@ -399,6 +406,7 @@
       <div class="section-header center">
         <span class="section-tag">Traction &amp; Roadmap</span>
         <h2>Milestones &amp; What's Next</h2>
+        <div class="section-line"></div>
       </div>
 
       <div class="milestones-timeline">
