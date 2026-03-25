@@ -5,18 +5,67 @@
 /* ── Scroll-reveal ──────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity .65s cubic-bezier(.22,1,.36,1),
-              transform .65s cubic-bezier(.22,1,.36,1);
+  transform: translateY(40px);
+  transition: opacity .7s cubic-bezier(.22,1,.36,1),
+              transform .7s cubic-bezier(.22,1,.36,1);
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .2s; }
-.reveal-delay-3 { transition-delay: .3s; }
-.reveal-delay-4 { transition-delay: .4s; }
+
+/* Directional variants */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity .7s cubic-bezier(.22,1,.36,1),
+              transform .7s cubic-bezier(.22,1,.36,1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity .7s cubic-bezier(.22,1,.36,1),
+              transform .7s cubic-bezier(.22,1,.36,1);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(.88);
+  transition: opacity .7s cubic-bezier(.22,1,.36,1),
+              transform .7s cubic-bezier(.22,1,.36,1);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Heading clip-path reveal */
+.reveal-clip {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: opacity .01s,
+              clip-path .8s cubic-bezier(.22,1,.36,1);
+}
+.reveal-clip.visible {
+  opacity: 1;
+  clip-path: inset(0 0% 0 0);
+}
+
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+.reveal-delay-3 { transition-delay: .24s; }
+.reveal-delay-4 { transition-delay: .32s; }
+.reveal-delay-5 { transition-delay: .40s; }
+.reveal-delay-6 { transition-delay: .52s; }
 
 /* ── Hero enhancements ──────────────────────────────── */
 
@@ -50,16 +99,7 @@
   100% { background-position: 0% 50%; }
 }
 
-/* Floating hero cards */
-.hero-card {
-  animation: float 6s ease-in-out infinite;
-}
-.hero-card:nth-child(2) { animation-delay: -2s; }
-.hero-card:nth-child(3) { animation-delay: -4s; }
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
-}
+/* Hero cards — static (no float animation) */
 
 /* ── Nav ────────────────────────────────────────────── */
 .nav {
@@ -175,9 +215,71 @@
   0%, 100% { opacity: 1; }
   50%       { opacity: .5; }
 }
-/* The orange dashed feedback arc path pulses */
-.cycle-svg path:last-of-type {
+/* The orange dashed arcs pulse */
+.cycle-svg .orange-arc {
   animation: pulse-orange 2.5s ease-in-out infinite;
+}
+
+/* SVG path draw-in animation */
+.cycle-svg path,
+.cycle-svg circle {
+  stroke-dashoffset: var(--dash-len, 1000);
+  transition: stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1);
+}
+.cycle-diagram.drawn .cycle-svg path,
+.cycle-diagram.drawn .cycle-svg circle {
+  stroke-dashoffset: 0;
+}
+
+
+/* Parallax wrapper for sections */
+.parallax-bg {
+  will-change: transform;
+}
+
+/* Section line separator animation */
+.section-line {
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--orange), var(--teal));
+  margin: 16px auto 0;
+  transition: width 1s cubic-bezier(.22,1,.36,1);
+  border-radius: 2px;
+}
+.section-header.visible .section-line,
+.section-header .section-line.visible {
+  width: 64px;
+}
+
+/* Section h2 — subtle zoom entrance */
+.section-header h2 {
+  transition: opacity .7s cubic-bezier(.22,1,.36,1),
+              transform .7s cubic-bezier(.22,1,.36,1);
+  opacity: 0;
+  transform: scale(.96) translateY(12px);
+}
+.section-header.visible h2 {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Section tag entrance */
+.section-tag, .section-tag-dark {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity .5s cubic-bezier(.22,1,.36,1),
+              transform .5s cubic-bezier(.22,1,.36,1);
+}
+.section-header.visible .section-tag,
+.section-header.visible .section-tag-dark {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Vision statement parallax container */
+.vision {
+  overflow: hidden;
 }
 
 /* Hover glow on cycle nodes */

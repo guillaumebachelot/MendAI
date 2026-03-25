@@ -17,37 +17,51 @@ window.addEventListener('scroll', () => {
 
 /* ── Scroll-reveal (Intersection Observer) ─────────── */
 function addRevealClasses() {
-  const targets = [
-    { selector: '.hero-text',         delay: 0 },
-    { selector: '.hero-visual',       delay: 0 },
-    { selector: '.mission-left',      delay: 0 },
-    { selector: '.mission-right',     delay: 1 },
-    { selector: '.module-card',       delay: null }, // staggered per-card
-    { selector: '.founder-card',      delay: null },
-    { selector: '.partner-card',      delay: null },
-    { selector: '.backing-item',      delay: null },
-    { selector: '.milestone-item',    delay: null },
-    { selector: '.market-stat',       delay: null },
-    { selector: '.hero-card',         delay: null },
-    { selector: '.problem-item',      delay: null },
-    { selector: '.section-header',    delay: 0 },
-    { selector: '.pilot-banner',      delay: 0 },
-  ];
+  // Directional stagger: left column slides from left, right from right
+  document.querySelectorAll('.mission-left').forEach(el => el.classList.add('reveal-left'));
+  document.querySelectorAll('.mission-right').forEach(el => el.classList.add('reveal-right'));
 
-  targets.forEach(({ selector, delay }) => {
-    document.querySelectorAll(selector).forEach((el, i) => {
+  // Scale-in for hero cards and module cards
+  document.querySelectorAll('.hero-card').forEach((el, i) => {
+    el.classList.add('reveal-scale');
+    if (i > 0) el.classList.add(`reveal-delay-${Math.min(i * 2, 6)}`);
+  });
+
+  // Staggered slide-up for grids
+  const staggerUp = ['.module-card', '.founder-card', '.partner-card',
+                     '.backing-item', '.problem-item', '.timeline-node'];
+  staggerUp.forEach(sel => {
+    document.querySelectorAll(sel).forEach((el, i) => {
       el.classList.add('reveal');
-      if (delay !== null) {
-        el.classList.add(`reveal-delay-${delay}`);
-      } else {
-        // stagger siblings
-        const d = Math.min(i, 4);
-        if (d > 0) el.classList.add(`reveal-delay-${d}`);
-      }
+      const d = Math.min(i + 1, 6);
+      el.classList.add(`reveal-delay-${d}`);
     });
   });
+
+  // Market stats slide up with heavy stagger
+  document.querySelectorAll('.market-stat').forEach((el, i) => {
+    el.classList.add('reveal-scale');
+    el.classList.add(`reveal-delay-${Math.min(i * 2 + 1, 6)}`);
+  });
+
+  // Section headers
+  document.querySelectorAll('.section-header').forEach(el => el.classList.add('reveal'));
+
+  // Pilot banner
+  document.querySelectorAll('.pilot-banner').forEach(el => el.classList.add('reveal-scale'));
+
+  // Hero text
+  document.querySelectorAll('.hero-text').forEach(el => el.classList.add('reveal-left'));
+  document.querySelectorAll('.hero-visual').forEach(el => el.classList.add('reveal-right'));
+
+  // Vision statement — simple fade-up as a whole
+  const vision = document.querySelector('.vision-statement');
+  if (vision) vision.classList.add('reveal');
 }
 addRevealClasses();
+
+const allRevealClasses = ['reveal', 'reveal-left', 'reveal-right', 'reveal-scale'];
+const revealSelector = allRevealClasses.map(c => '.' + c).join(',');
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -58,9 +72,68 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  { threshold: 0.1, rootMargin: '0px 0px -48px 0px' }
 );
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll(revealSelector).forEach(el => observer.observe(el));
+
+
+/* ── Cycle diagram SVG path draw ───────────────────── */
+const cycleDiagram = document.querySelector('.cycle-diagram');
+if (cycleDiagram) {
+  // Measure each path/circle length and set stroke-dasharray
+  cycleDiagram.querySelectorAll('path, circle').forEach(el => {
+    const len = el.getTotalLength ? el.getTotalLength() : 1000;
+    el.style.strokeDasharray = len;
+    el.style.setProperty('--dash-len', len);
+  });
+
+  const cycleObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          // Stagger each path draw
+          let i = 0;
+          cycleDiagram.querySelectorAll('path, circle').forEach(el => {
+            setTimeout(() => el.style.strokeDashoffset = '0', i * 120);
+            i++;
+          });
+          // Animate nodes in
+          cycleDiagram.querySelectorAll('.cycle-node').forEach((node, idx) => {
+            setTimeout(() => {
+              node.style.opacity = '1';
+              node.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 400 + idx * 150);
+          });
+          cycleObserver.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  cycleObserver.observe(cycleDiagram);
+
+  // Pre-hide nodes for entrance
+  cycleDiagram.querySelectorAll('.cycle-node').forEach(node => {
+    node.style.opacity = '0';
+    node.style.transform = 'translate(-50%, -50%) scale(0.7)';
+    node.style.transition = 'opacity .4s cubic-bezier(.22,1,.36,1), transform .4s cubic-bezier(.22,1,.36,1)';
+  });
+}
+
+/* ── Section line separator reveal ─────────────────── */
+const lineObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const line = e.target.querySelector('.section-line');
+        if (line) setTimeout(() => line.classList.add('visible'), 300);
+        lineObserver.unobserve(e.target);
+      }
+    });
+  },
+  { threshold: 0.3 }
+);
+document.querySelectorAll('.section-header').forEach(el => lineObserver.observe(el));
 
 /* ── Module card — mouse-tracking glow ─────────────── */
 document.querySelectorAll('.module-card').forEach(card => {
@@ -157,14 +230,28 @@ navLinksList.querySelectorAll('a').forEach(a =>
   })
 );
 
-/* ── Subtle parallax on hero background ─────────────── */
-const hero = document.querySelector('.hero');
-if (hero) {
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY * 0.3;
-    hero.style.backgroundPositionY = `-${y}px`;
-  }, { passive: true });
-}
+/* ── Parallax on sections ────────────────────────────── */
+const parallaxSections = [
+  { el: document.querySelector('.hero'),    speed: 0.25 },
+  { el: document.querySelector('.vision'),  speed: 0.15 },
+  { el: document.querySelector('.solution'),speed: 0.10 },
+  { el: document.querySelector('.contact'), speed: 0.12 },
+].filter(s => s.el);
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  parallaxSections.forEach(({ el, speed }) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+    const offset = (scrollY - el.offsetTop) * speed;
+    const bg = el.querySelector('.parallax-bg');
+    if (bg) {
+      bg.style.transform = `translateY(${offset}px)`;
+    } else {
+      el.style.backgroundPositionY = `calc(50% + ${offset}px)`;
+    }
+  });
+}, { passive: true });
 
 /* ── Typed headline effect (hero eyebrow) ───────────── */
 const eyebrow = document.querySelector('.hero-eyebrow');
