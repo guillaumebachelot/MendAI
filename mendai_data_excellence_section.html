@@ -3,26 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css" />
 <link rel="stylesheet" href="assets/css/animations.css" />
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --ink: #0a0a0f;
-    --paper: #f5f3ee;
-    --signal: #00d4a0;
-    --signal-dim: rgba(0, 212, 160, 0.12);
-    --signal-mid: rgba(0, 212, 160, 0.35);
-    --muted: #7a7873;
-    --rule: rgba(10,10,15,0.1);
+    --ink: var(--text);
+    --paper: var(--white);
+    --signal: var(--orange);
+    --signal-dim: rgba(37,99,235,0.08);
+    --signal-mid: rgba(37,99,235,0.3);
+    --muted: var(--text-muted);
+    --rule: var(--border);
   }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Fraunces', Georgia, serif;
+    background: var(--white);
+    color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -36,8 +32,8 @@
   }
 
   .eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
     font-weight: 300;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -57,8 +53,8 @@
   }
 
   .hero-title {
-    font-size: clamp(42px, 6vw, 78px);
-    font-weight: 300;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.02em;
     max-width: 760px;
@@ -92,8 +88,8 @@
   }
 
   .vision-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
@@ -101,7 +97,7 @@
   }
 
   .vision-body {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 300;
     line-height: 1.65;
     color: #2a2a2e;
@@ -125,7 +121,7 @@
     right: -20px;
     top: 50%;
     transform: translateY(-50%) rotate(90deg);
-    font-family: 'Fraunces', serif;
+    font-family: var(--font), sans-serif;
     font-size: 120px;
     font-weight: 700;
     letter-spacing: -0.05em;
@@ -144,16 +140,16 @@
   }
 
   .challenge-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(245,243,238,0.35);
     padding-top: 8px;
   }
   .challenge-title {
-    font-size: clamp(28px, 3.5vw, 42px);
-    font-weight: 300;
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 700;
     line-height: 1.15;
     margin-bottom: 28px;
     color: var(--paper);
@@ -187,16 +183,16 @@
     margin-bottom: 70px;
   }
   .helix-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
     padding-top: 8px;
   }
   .helix-intro-title {
-    font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 300;
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 700;
     line-height: 1.15;
     margin-bottom: 22px;
   }
@@ -205,7 +201,7 @@
     color: var(--signal);
   }
   .helix-intro-body {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 300;
     line-height: 1.75;
     color: #4a4a50;
@@ -243,7 +239,7 @@
   .feature:hover::after { transform: scaleX(1); }
 
   .feature-num {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 11px;
     color: var(--signal);
     letter-spacing: 0.15em;
@@ -251,18 +247,18 @@
     display: block;
   }
   .feature-title {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 18px;
     letter-spacing: -0.01em;
   }
   .feature-body {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 300;
     line-height: 1.7;
     color: #5a5a62;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Courier New', monospace;
   }
 
   /* ── SIGNAL VISUALIZER (decorative) ── */
@@ -304,16 +300,16 @@
     margin-bottom: 80px;
   }
   .advantage-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
     padding-top: 8px;
   }
   .advantage-title {
-    font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 300;
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 700;
     line-height: 1.15;
     margin-bottom: 22px;
   }
@@ -322,7 +318,7 @@
     color: var(--signal);
   }
   .advantage-intro {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 300;
     line-height: 1.75;
     color: #4a4a50;
@@ -333,7 +329,7 @@
     gap: 60px;
   }
   .adv-item-title {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 700;
     margin-bottom: 16px;
     letter-spacing: -0.01em;
@@ -381,7 +377,7 @@
   }
   .closing-attr {
     margin-top: 20px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;

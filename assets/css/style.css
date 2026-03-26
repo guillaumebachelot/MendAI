@@ -261,6 +261,16 @@ section { padding: 96px 0; }
 .mission-left .section-tag { margin-bottom: 16px; display: block; }
 .mission-left h2 { margin-bottom: 24px; }
 .mission-left p { margin-bottom: 16px; }
+.team-pub-link {
+  color: var(--orange);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s;
+}
+.team-pub-link:hover { border-color: var(--orange); }
+
 .pull-quote {
   border-left: 3px solid var(--orange);
   padding: 16px 20px;
@@ -317,6 +327,55 @@ section { padding: 96px 0; }
 .stat-desc { font-size: 0.82rem; color: rgba(255,255,255,.6); margin: 0; }
 
 /* =====================================================
+   DATA PHILOSOPHY TEASER
+   ===================================================== */
+.data-phil-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.data-phil-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.data-phil-card:hover {
+  border-color: var(--orange);
+  box-shadow: 0 4px 24px rgba(37,99,235,.08);
+}
+.data-phil-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  color: var(--orange);
+  margin-bottom: 16px;
+  font-family: 'Courier New', monospace;
+}
+.data-phil-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.data-phil-card p { font-size: 0.9rem; line-height: 1.7; margin: 0; }
+.data-phil-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+.data-phil-link {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--orange);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s;
+}
+.data-phil-link:hover { border-color: var(--orange); }
+
+/* =====================================================
    SOLUTION
    ===================================================== */
 .solution h2 { color: var(--white); }
@@ -327,8 +386,9 @@ section { padding: 96px 0; }
 .cycle-diagram {
   position: relative;
   width: 480px;
-  height: 480px;
+  height: 530px;
   margin: 48px auto 16px;
+  overflow: visible;
 }
 .cycle-svg {
   position: absolute;
@@ -829,6 +889,7 @@ section { padding: 96px 0; }
   .hero-inner       { grid-template-columns: 1fr; }
   .hero-visual      { display: none; }
   .mission-grid     { grid-template-columns: 1fr; }
+  .data-phil-grid   { grid-template-columns: 1fr; }
   .modules          { grid-template-columns: 1fr; }
   .founders         { grid-template-columns: 1fr; }
   .partners-grid    { grid-template-columns: repeat(2, 1fr); }
