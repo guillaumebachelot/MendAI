@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications — MendAI Labs</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- Publications page overrides ---- */
+    :root {
+      --pub-bg:           #f7f6f2;
+      --pub-surface:      #fff;
+      --pub-ink:          #0f0f0f;
+      --pub-muted:        #666;
+      --pub-accent:       #c8540a;
+      --pub-blue:         #1a4a7a;
+      --pub-border:       #e2e0d8;
+      --pub-accent-light: #fdf0e8;
+      --pub-blue-light:   #e8f0f8;
+    }
+
+    .pub-page-body { font-family: 'DM Sans', sans-serif; background: var(--pub-bg); font-weight: 300; }
+
+    .pub-content { padding: 120px 4rem 5rem; max-width: 920px; margin: 0 auto; }
+
+    .pub-content h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.3rem;
+      color: var(--pub-ink);
+      font-weight: 400;
+    }
+
+    .pub-subtitle { color: var(--pub-muted); font-size: 0.9rem; margin-bottom: 3rem; }
+    .pub-subtitle strong { color: var(--pub-ink); }
+
+    .pub-section-block { margin-top: 3rem; }
+
+    .pub-section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pub-accent);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .pub-section-label::after { content: ''; flex: 1; height: 1px; background: var(--pub-border); }
+
+    .pub-list-new { display: flex; flex-direction: column; gap: 0.85rem; }
+
+    .pub-card-new {
+      background: var(--pub-surface);
+      border: 1px solid var(--pub-border);
+      border-radius: 5px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .pub-card-new:hover { border-color: var(--pub-accent); box-shadow: 0 4px 20px rgba(200,84,10,0.08); }
+
+    .pub-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.4rem; }
+
+    .pub-journal-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pub-blue);
+      background: var(--pub-blue-light);
+      padding: 0.18rem 0.55rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .pub-journal-tag.orange { color: var(--pub-accent); background: var(--pub-accent-light); }
+
+    .pub-year-tag { font-size: 0.68rem; font-weight: 500; color: var(--pub-muted); white-space: nowrap; padding-top: 0.1rem; }
+
+    .pub-title-new { font-size: 0.95rem; font-weight: 500; line-height: 1.5; margin-bottom: 0.5rem; color: var(--pub-ink); }
+
+    .pub-authors-new { font-size: 0.82rem; color: var(--pub-muted); line-height: 1.65; }
+    .pub-authors-new b { color: var(--pub-ink); font-weight: 600; }
+
+    .pub-meta-new { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
+
+    .pub-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--pub-bg);
+      border: 1px solid var(--pub-border);
+      border-radius: 100px;
+      padding: 0.18rem 0.55rem;
+      color: var(--pub-muted);
+    }
+    .pub-badge.oa  { color: #2a7a4f; border-color: #c4e0d0; background: #f0f8f4; }
+    .pub-badge.pre { color: #7a4a2a; border-color: #e0d0c4; background: #fdf5f0; }
+
+    .pub-link-new {
+      font-size: 0.75rem;
+      color: var(--pub-accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: opacity 0.2s;
+    }
+    .pub-link-new:hover { opacity: 0.7; text-decoration: underline; }
+
+    em.note { font-size: 0.78rem; color: var(--pub-muted); font-style: italic; }
+
+    @media (max-width: 600px) { .pub-content { padding: 110px 1.25rem 3rem; } }
+  </style>
+</head>
+<body class="pub-page-body">
+  <div id="scroll-progress"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/logo.png" alt="MendAI Labs" class="nav-logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <span class="nav-logo-fallback"><span class="logo-dot"></span>MendAI <strong>Labs</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#mission">Mission</a></li>
+        <li><a href="index.html#solution">Solution</a></li>
+        <li><a href="index.html#team">Team</a></li>
+        <li><a href="index.html#milestones">Milestones</a></li>
+        <li><a href="publications.html" class="active">Publications</a></li>
+        <li><a href="index.html#contact" class="btn-nav">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PUBLICATIONS CONTENT -->
+  <div class="pub-content">
+    <h1>Publications</h1>
+    <p class="pub-subtitle">Selected publications by <strong>Guillaume Bachelot</strong> &amp; <strong>Paul Bertin</strong></p>
+
+    <!-- Cards injected here by publications.js -->
+    <div id="pub-root"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="nav-logo">
+        <img src="assets/images/logo.png" alt="MendAI Labs" class="nav-logo-img footer-logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <span class="nav-logo-fallback"><span class="logo-dot"></span>MendAI <strong>Labs</strong></span>
+      </span>
+      <p>Montreal · Mila Ventures Incubatee · Paris © 2026 MendAI Labs. All rights reserved.</p>
+      <div class="footer-bottom">
+        <p class="footer-disclaimer">Company overview</p>
+        <a href="https://www.linkedin.com/company/mendai-labs/posts/?feedView=all" target="_blank" rel="noopener" class="footer-social">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 23.2 0 22.225 0z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/data/publications-data.js"></script>
+  <script src="assets/js/publications.js"></script>
+</body>
+</html>
