@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications — MendAI Labs</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- Publications page overrides ---- */
+    :root {
+      --pub-bg:           #f7f6f2;
+      --pub-surface:      #fff;
+      --pub-ink:          #0f0f0f;
+      --pub-muted:        #666;
+      --pub-accent:       #c8540a;
+      --pub-blue:         #1a4a7a;
+      --pub-border:       #e2e0d8;
+      --pub-accent-light: #fdf0e8;
+      --pub-blue-light:   #e8f0f8;
+    }
+
+    .pub-page-body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--pub-bg);
+      font-weight: 300;
+    }
+
+    .pub-content {
+      padding: 120px 4rem 5rem;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .pub-content h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.3rem;
+      color: var(--pub-ink);
+      font-weight: 400;
+    }
+
+    .pub-subtitle {
+      color: var(--pub-muted);
+      font-size: 0.9rem;
+      margin-bottom: 3rem;
+    }
+    .pub-subtitle strong { color: var(--pub-ink); }
+
+    .pub-section-block { margin-top: 3rem; }
+
+    .pub-section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pub-accent);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .pub-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--pub-border);
+    }
+
+    .pub-list-new {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .pub-card-new {
+      background: var(--pub-surface);
+      border: 1px solid var(--pub-border);
+      border-radius: 5px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .pub-card-new:hover {
+      border-color: var(--pub-accent);
+      box-shadow: 0 4px 20px rgba(200,84,10,0.08);
+    }
+
+    .pub-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-journal-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pub-blue);
+      background: var(--pub-blue-light);
+      padding: 0.18rem 0.55rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .pub-journal-tag.orange {
+      color: var(--pub-accent);
+      background: var(--pub-accent-light);
+    }
+
+    .pub-year-tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--pub-muted);
+      white-space: nowrap;
+      padding-top: 0.1rem;
+    }
+
+    .pub-title-new {
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+      color: var(--pub-ink);
+    }
+
+    .pub-authors-new {
+      font-size: 0.82rem;
+      color: var(--pub-muted);
+      line-height: 1.65;
+    }
+    .pub-authors-new b {
+      color: var(--pub-ink);
+      font-weight: 600;
+    }
+
+    .pub-meta-new {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--pub-bg);
+      border: 1px solid var(--pub-border);
+      border-radius: 100px;
+      padding: 0.18rem 0.55rem;
+      color: var(--pub-muted);
+    }
+    .pub-badge.oa  { color: #2a7a4f; border-color: #c4e0d0; background: #f0f8f4; }
+    .pub-badge.pre { color: #7a4a2a; border-color: #e0d0c4; background: #fdf5f0; }
+
+    .pub-link-new {
+      font-size: 0.75rem;
+      color: var(--pub-accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: opacity 0.2s;
+    }
+    .pub-link-new:hover { opacity: 0.7; text-decoration: underline; }
+
+    em.note {
+      font-size: 0.78rem;
+      color: var(--pub-muted);
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      .pub-content { padding: 110px 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body class="pub-page-body">
+  <div id="scroll-progress"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/logo.png" alt="MendAI Labs" class="nav-logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <span class="nav-logo-fallback"><span class="logo-dot"></span>MendAI <strong>Labs</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#mission">Mission</a></li>
+        <li><a href="index.html#solution">Solution</a></li>
+        <li><a href="index.html#team">Team</a></li>
+        <li><a href="index.html#milestones">Milestones</a></li>
+        <li><a href="publications.html" class="active">Publications</a></li>
+        <li><a href="index.html#contact" class="btn-nav">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PUBLICATIONS CONTENT -->
+  <div class="pub-content">
+    <h1>Publications</h1>
+    <p class="pub-subtitle">Selected publications by <strong>Guillaume Bachelot</strong> &amp; <strong>Paul Bertin</strong></p>
+
+    <!-- GUILLAUME -->
+    <div class="pub-section-block">
+      <div class="pub-section-label">Guillaume Bachelot</div>
+      <div class="pub-list-new">
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Eur J Endocrinol</span><span class="pub-year-tag">2025</span></div>
+          <div class="pub-title-new">Advances in congenital adrenal hyperplasia newborn screening: 11-ketotestosterone and 21-deoxycortisone as additional discriminatory biomarkers</div>
+          <div class="pub-authors-new">Coumba Sow, Thao Nguyen-Khoa, Caroline Moreau, Jean Fiet, <b>Guillaume Bachelot</b>, Bettina Ribaut, Ophélie Chaussenery, Layla Al Zarga, Aurore Desmons, Frédéric Brioude, Dulanjalee Kariyawasam, Athanasia Stoupa, Michel Polak, Muriel Houang, Antonin Lamazière, FIRENDO Group</div>
+          <div class="pub-meta-new"><span class="pub-badge">193(6):677–686</span><span class="pub-badge">PMID 41066624</span><a class="pub-link-new" href="https://doi.org/10.1093/ejendo/lvaf208" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Front Bioinform</span><span class="pub-year-tag">2025</span></div>
+          <div class="pub-title-new">Extracting a COVID-19 signature from a multi-omic dataset</div>
+          <div class="pub-authors-new">Baptiste Bauvin, Thibaud Godon, <b>Guillaume Bachelot</b>, Claudia Carpentier, Riikka Huusaari, Maxime Deraspe, Juho Rousu, Caroline Quach, Jacques Corbeil</div>
+          <div class="pub-meta-new"><span class="pub-badge">5:1645785</span><span class="pub-badge">PMID 41059484</span><span class="pub-badge oa">Open Access</span><a class="pub-link-new" href="https://doi.org/10.3389/fbinf.2025.1645785" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Eur J Endocrinol</span><span class="pub-year-tag">2024</span></div>
+          <div class="pub-title-new">Plasma 21-deoxycortisone: a sensitive additive tool in 21-hydroxylase deficiency in newborns</div>
+          <div class="pub-authors-new">Jean Fiet, <b>Guillaume Bachelot</b>, Coumba Sow, Dominique Farabos, Nicolas Helin, Thibaut Eguether, Marie-Noelle Dufourg, Christine Bellanne-Chantelot, Bettina Ribaut, Anne Bachelot, Jacques Young, Muriel Houang, Antonin Lamazière</div>
+          <div class="pub-meta-new"><span class="pub-badge">191(2):204–210</span><span class="pub-badge">PMID 39137138</span><a class="pub-link-new" href="https://doi.org/10.1093/ejendo/lvae062" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Ann Biol Clin (Paris)</span><span class="pub-year-tag">2024</span></div>
+          <div class="pub-title-new">[Artificial intelligence: to a better predictive strategy for testicular sperm extraction outcome in azoospermia] <em class="note">[Article in French]</em></div>
+          <div class="pub-authors-new"><b>Guillaume Bachelot</b>, Anna Ly, Diane Rivet-Danon, Nathalie Sermondade, Valentine Frydman, Antonin Lamazière, Rahaf Haj Hamid, Rachel Levy, Charlotte Dupont</div>
+          <div class="pub-meta-new"><span class="pub-badge">82(2):139–149</span><span class="pub-badge">PMID 38702888</span><a class="pub-link-new" href="https://doi.org/10.1684/abc.2024.1882" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Asian J Androl</span><span class="pub-year-tag">2024</span></div>
+          <div class="pub-title-new">Machine learning approach to assess the association between anthropometric, metabolic, and nutritional status and semen parameters</div>
+          <div class="pub-authors-new"><b>Guillaume Bachelot</b>, Antonin Lamazière, Sebastien Czernichow, Celine Faure, Chrystelle Racine, Rachel Levy, Charlotte Dupont; Nutrition and Fertility (ALIFERT) Group</div>
+          <div class="pub-meta-new"><span class="pub-badge">26(4):349–355</span><span class="pub-badge">PMID 38624205</span><span class="pub-badge oa">Open Access</span><a class="pub-link-new" href="https://doi.org/10.4103/aja20247" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">J Med Internet Res</span><span class="pub-year-tag">2023</span></div>
+          <div class="pub-title-new">A Machine Learning Approach for the Prediction of Testicular Sperm Extraction in Nonobstructive Azoospermia: Algorithm Development and Validation Study</div>
+          <div class="pub-authors-new"><b>Guillaume Bachelot</b>, Ferdinand Dhombres, Nathalie Sermondade, Rahaf Haj Hamid, Isabelle Berthaut, Valentine Frydman, Marie Prades, Kamila Kolanska, Lise Selleret, Emmanuelle Mathieu-D'Argent, Diane Rivet-Danon, Rachel Levy, Antonin Lamazière, Charlotte Dupont</div>
+          <div class="pub-meta-new"><span class="pub-badge">25:e44047</span><span class="pub-badge">PMID 37342078</span><span class="pub-badge oa">Open Access</span><a class="pub-link-new" href="https://doi.org/10.2196/44047" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Hum Reprod</span><span class="pub-year-tag">2023</span></div>
+          <div class="pub-title-new">Combining metabolomics and machine learning models as a tool to distinguish non-classic 21-hydroxylase deficiency from polycystic ovary syndrome without adrenocorticotropic hormone testing</div>
+          <div class="pub-authors-new"><b>Guillaume Bachelot</b>, Anne Bachelot, Marion Bonnier, Joe-Elie Salem, Dominique Farabos, Severine Trabado, Charlotte Dupont, Peter Kamenicky, Muriel Houang, Jean Fiet, Yves Le Bouc, Jacques Young, Antonin Lamazière</div>
+          <div class="pub-meta-new"><span class="pub-badge">38(2):266–276</span><span class="pub-badge">PMID 36427016</span><span class="pub-badge oa">Free article</span><a class="pub-link-new" href="https://doi.org/10.1093/humrep/deac254" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">J Allergy Clin Immunol Pract</span><span class="pub-year-tag">2022</span></div>
+          <div class="pub-title-new">Standards of Genetic Testing in the Diagnosis and Prognostication of Systemic Mastocytosis in 2022: Recommendations of the EU-US Cooperative Group</div>
+          <div class="pub-authors-new">Gregor Hoermann, Karl Sotlar, Mohamad Jawhar, Thomas Kristensen, <b>Guillaume Bachelot</b>, Boguslaw Nedoszytko, Melody C Carter, Hans-Peter Horny, Patrizia Bonadonna, Wolfgang R Sperr, Karin Hartmann, Knut Brockow, Jonathan J Lyons, Hanneke C Kluin-Nelemans, Olivier Hermine, Cem Akin, Sigurd Broesby-Olsen, Massimo Triggiani, Joseph H Butterfield, Juliana Schwaab, Andreas Reiter, Jason Gotlib, Dean D Metcalfe, Tracy I George, Alberto Orfao, Peter Valent, Michel Arock</div>
+          <div class="pub-meta-new"><span class="pub-badge">10(8):1953–1963</span><span class="pub-badge">PMID 35283331</span><a class="pub-link-new" href="https://doi.org/10.1016/j.jaip.2022.03.001" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Sci Rep</span><span class="pub-year-tag">2022</span></div>
+          <div class="pub-title-new">Identification of bronchoalveolar and blood immune-inflammatory biomarker signature associated with poor 28-day outcome in critically ill COVID-19 patients</div>
+          <div class="pub-authors-new">Guillaume Voiriot, Karim Dorgham, <b>Guillaume Bachelot</b>, Anne Fajac, Laurence Morand-Joubert, Christophe Parizot, Grigorios Gerotziafas, Dominique Farabos, Germain Trugnan, Thibaut Eguether, Clarisse Blayau, Michel Djibré, Alexandre Elabbadi, Aude Gibelin, Vincent Labbé, Antoine Parrot, Matthieu Turpin, Jacques Cadranel, Guy Gorochov, Muriel Fartoukh, Antonin Lamazière</div>
+          <div class="pub-meta-new"><span class="pub-badge">12(1):9502</span><span class="pub-badge">PMID 35681070</span><span class="pub-badge oa">Open Access</span><a class="pub-link-new" href="https://doi.org/10.1038/s41598-022-13179-0" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">J Steroid Biochem Mol Biol</span><span class="pub-year-tag">2022</span></div>
+          <div class="pub-title-new">A proof of concept of a machine learning algorithm to predict late-onset 21-hydroxylase deficiency in children with premature pubic hair</div>
+          <div class="pub-authors-new">Héléna Agnani, <b>Guillaume Bachelot</b>, Thibaut Eguether, Bettina Ribaut, Jean Fiet, Yves Le Bouc, Irène Netchine, Muriel Houang, Antonin Lamazière</div>
+          <div class="pub-meta-new"><span class="pub-badge">220:106085</span><span class="pub-badge">PMID 35292353</span><span class="pub-badge oa">Free article</span><a class="pub-link-new" href="https://doi.org/10.1016/j.jsbmb.2022.106085" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Int J Mol Sci</span><span class="pub-year-tag">2021</span></div>
+          <div class="pub-title-new">Clinical Impact of Inherited and Acquired Genetic Variants in Mastocytosis <em class="note">[Review]</em></div>
+          <div class="pub-authors-new">Boguslaw Nedoszytko, Michel Arock, Jonathan J Lyons, <b>Guillaume Bachelot</b>, Lawrence B Schwartz, Andreas Reiter, Mohamad Jawhar, Juliana Schwaab, Magdalena Lange, Georg Greiner, Gregor Hoermann, Marek Niedoszytko, Dean D Metcalfe, Peter Valent</div>
+          <div class="pub-meta-new"><span class="pub-badge">22(1):411</span><span class="pub-badge">PMID 33401724</span><span class="pub-badge oa">Open Access</span><a class="pub-link-new" href="https://doi.org/10.3390/ijms22010411" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Sci Rep</span><span class="pub-year-tag">2021</span></div>
+          <div class="pub-title-new">Proof of concept and development of a couple-based machine learning model to stratify infertile patients with idiopathic infertility <em class="note">[Clinical Trial]</em></div>
+          <div class="pub-authors-new"><b>Guillaume Bachelot</b>, Rachel Lévy, Anne Bachelot, Céline Faure, Sébastien Czernichow, Charlotte Dupont, Antonin Lamazière; Alifert Collaborative Group</div>
+          <div class="pub-meta-new"><span class="pub-badge">11(1):24003</span><span class="pub-badge">PMID 34907216</span><span class="pub-badge oa">Open Access</span><a class="pub-link-new" href="https://doi.org/10.1038/s41598-021-03165-3" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Scand J Clin Lab Invest</span><span class="pub-year-tag">2018</span></div>
+          <div class="pub-title-new">Wide-range CRP versus high-sensitivity CRP on Roche analyzers: focus on low-grade inflammation ranges and high-sensitivity cardiac troponin T levels</div>
+          <div class="pub-authors-new">Denis Monneret, Fouzi Mestari, Shaedah Djiavoudine, <b>Guillaume Bachelot</b>, Maxime Cloison, Françoise Imbert-Bismut, Maguy Bernard, Pierre Hausfater, Jean-Marc Lacorte, Dominique Bonnefont-Rousselot</div>
+          <div class="pub-meta-new"><span class="pub-badge">78(5):346–351</span><span class="pub-badge">PMID 29764220</span><a class="pub-link-new" href="https://doi.org/10.1080/00365513.2018.1471618" target="_blank">↗ DOI</a></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAUL -->
+    <div class="pub-section-block">
+      <div class="pub-section-label">Paul Bertin</div>
+      <div class="pub-list-new">
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Nature Genetics</span><span class="pub-year-tag">2025</span></div>
+          <div class="pub-title-new">Causal machine learning for single-cell genomics <em class="note">[Perspective]</em></div>
+          <div class="pub-authors-new">Alejandro Tejada-Lapuerta, <b>Paul Bertin</b>, Stefan Bauer, Hananeh Aliee, Yoshua Bengio, Fabian J. Theis</div>
+          <div class="pub-meta-new"><span class="pub-badge">57:797–808</span><span class="pub-badge">16k accesses · 28 citations</span><a class="pub-link-new" href="https://doi.org/10.1038/s41588-025-02124-2" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Cell Reports Methods</span><span class="pub-year-tag">2023</span></div>
+          <div class="pub-title-new">RECOVER identifies synergistic drug combinations <em>in vitro</em> through sequential model optimization</div>
+          <div class="pub-authors-new"><b>Paul Bertin</b>, Jarrid Rector-Brooks, Deepak Sharma, Thomas Gaudelet, Andrew Anighoro, Torsten Gross, Francisco Martinez-Pena, Eileen L. Tang, Suraj M S, Cristian Regep, Jeremy Hayter, Maksym Korablyov, Nicholas Valiante, Almer van der Sloot, Mike Tyers, Charles Roberts, Michael M. Bronstein, Luke L. Lairson, Jake P. Taylor-King, Yoshua Bengio</div>
+          <div class="pub-meta-new"><span class="pub-badge">3(10):100599</span><span class="pub-badge oa">Open Access</span><a class="pub-link-new" href="https://doi.org/10.1016/j.crmeth.2023.100599" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag orange">PMLR – MIDL 2022</span><span class="pub-year-tag">2022</span></div>
+          <div class="pub-title-new">TorchXRayVision: A library of chest X-ray datasets and models</div>
+          <div class="pub-authors-new">Joseph Paul Cohen, Joseph D. Viviano, <b>Paul Bertin</b>, Paul Morrison, Parsa Torabian, Matteo Guarrera, Matthew P Lungren, Akshay Chaudhari, Rupert Brooks, Mohammad Hashir, Hadrien Bertrand</div>
+          <div class="pub-meta-new"><span class="pub-badge">PMLR 172:231–249</span><a class="pub-link-new" href="https://proceedings.mlr.press/v172/cohen22a" target="_blank">↗ PMLR</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag orange">arXiv Preprint</span><span class="pub-year-tag">2022</span></div>
+          <div class="pub-title-new">RECOVER: sequential model optimization platform for combination drug repurposing identifies novel synergistic compounds in vitro</div>
+          <div class="pub-authors-new"><b>Paul Bertin</b>, Jarrid Rector-Brooks, Deepak Sharma, Thomas Gaudelet, Andrew Anighoro, Torsten Gross, Francisco Martinez-Pena, Eileen L. Tang, Suraj M S, Cristian Regep, Jeremy Hayter, Maksym Korablyov, Nicholas Valiante, Almer van der Sloot, Mike Tyers, Charles Roberts, Michael M. Bronstein, Luke L. Lairson, Jake P. Taylor-King, Yoshua Bengio</div>
+          <div class="pub-meta-new"><span class="pub-badge pre">arXiv:2202.04202</span><a class="pub-link-new" href="https://arxiv.org/abs/2202.04202" target="_blank">↗ arXiv</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag">Cell</span><span class="pub-year-tag">2020</span></div>
+          <div class="pub-title-new">A Multiplexed Single-Cell CRISPR Screening Platform Enables Systematic Dissection of the Unfolded Protein Response</div>
+          <div class="pub-authors-new">Norman TM, Horlbeck MA, Replogle JM, Ge AY, Xu A, <b>Paul Bertin</b> et al., Weissman JS</div>
+          <div class="pub-meta-new"><span class="pub-badge">PMID 32059779</span><a class="pub-link-new" href="https://doi.org/10.1016/j.cell.2020.01.028" target="_blank">↗ DOI</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag orange">arXiv Preprint</span><span class="pub-year-tag">2021</span></div>
+          <div class="pub-title-new">DEUP: Direct Epistemic Uncertainty Prediction</div>
+          <div class="pub-authors-new">Salem Lahlou, Moksh Jain, Hadi Nekoei, Victor Ion Butoi, <b>Paul Bertin</b>, Jarrid Rector-Brooks, Maksym Korablyov, Yoshua Bengio</div>
+          <div class="pub-meta-new"><span class="pub-badge pre">arXiv:2102.08501</span><a class="pub-link-new" href="https://arxiv.org/abs/2102.08501" target="_blank">↗ arXiv</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag orange">arXiv Preprint</span><span class="pub-year-tag">2019</span></div>
+          <div class="pub-title-new">Chester: A Web Delivered Locally Computed Chest X-Ray Disease Prediction System</div>
+          <div class="pub-authors-new">Joseph Paul Cohen, <b>Paul Bertin</b>, Vincent Frappier</div>
+          <div class="pub-meta-new"><span class="pub-badge pre">arXiv:1901.11210</span><span class="pub-badge">Submitted to MIDL 2020</span><a class="pub-link-new" href="https://arxiv.org/abs/1901.11210" target="_blank">↗ arXiv</a></div>
+        </div>
+
+        <div class="pub-card-new">
+          <div class="pub-card-top"><span class="pub-journal-tag orange">arXiv Preprint</span><span class="pub-year-tag">2019</span></div>
+          <div class="pub-title-new">Analysis of Gene Interaction Graphs as Prior Knowledge for Machine Learning Models</div>
+          <div class="pub-authors-new"><b>Paul Bertin</b>, Mohammad Hashir, Martin Weiss, Vincent Frappier, Theodore J. Perkins, Geneviève Boucher, Joseph Paul Cohen</div>
+          <div class="pub-meta-new"><span class="pub-badge pre">arXiv:1905.02295</span><a class="pub-link-new" href="https://arxiv.org/abs/1905.02295" target="_blank">↗ arXiv</a></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /.pub-content -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="nav-logo">
+        <img src="assets/images/logo.png" alt="MendAI Labs" class="nav-logo-img footer-logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <span class="nav-logo-fallback"><span class="logo-dot"></span>MendAI <strong>Labs</strong></span>
+      </span>
+      <p>Montreal · Mila Ventures Incubatee · Paris © 2026 MendAI Labs. All rights reserved.</p>
+      <div class="footer-bottom">
+        <p class="footer-disclaimer">Company overview</p>
+        <a href="https://www.linkedin.com/company/mendai-labs/posts/?feedView=all" target="_blank" rel="noopener" class="footer-social">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 23.2 0 22.225 0z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

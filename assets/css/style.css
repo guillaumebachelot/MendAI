@@ -849,3 +849,127 @@ section { padding: 96px 0; }
   .cycle-diagram .wf-icon { width: 44px; height: 44px; font-size: 1rem; }
   .cycle-diagram .cycle-label { font-size: 0.68rem; }
 }
+
+/* =====================================================
+   PUBLICATIONS PAGE
+   ===================================================== */
+
+/* Active nav link on publications page */
+.nav-links a.active {
+  color: var(--white) !important;
+}
+
+/* Publications hero header */
+.pub-hero {
+  padding: 160px 0 80px;
+}
+.pub-hero h1 {
+  margin: 12px 0 20px;
+}
+.pub-hero-sub {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.65);
+}
+
+/* Publications section */
+.publications {
+  padding: 80px 0 120px;
+}
+
+/* Year group */
+.pub-year-group {
+  margin-bottom: 56px;
+}
+.pub-year-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Publication card */
+.pub-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+}
+.pub-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(37,99,235,.25);
+  transform: translateY(-2px);
+}
+.pub-card-inner {
+  padding: 24px 28px;
+}
+.pub-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.pub-journal {
+  font-weight: 600;
+  color: var(--orange);
+}
+.pub-dot {
+  color: var(--border);
+}
+.pub-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.pub-title a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color .2s;
+}
+.pub-title a:hover {
+  color: var(--orange);
+}
+.pub-authors {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+.pub-actions {
+  display: flex;
+  gap: 12px;
+}
+.pub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--orange);
+  text-decoration: none;
+  padding: 5px 12px;
+  border: 1px solid rgba(37,99,235,.25);
+  border-radius: 100px;
+  transition: background .2s, color .2s;
+}
+.pub-link:hover {
+  background: var(--orange);
+  color: var(--white);
+}
+
+@media (max-width: 600px) {
+  .pub-hero { padding: 130px 0 60px; }
+  .pub-card-inner { padding: 18px 20px; }
+}
