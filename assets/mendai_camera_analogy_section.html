@@ -1,0 +1,462 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Mono:wght@300;400&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0a0a0f;
+    --paper: #f5f3ee;
+    --signal: #00d4a0;
+    --muted: #7a7873;
+    --rule: rgba(10,10,15,0.1);
+  }
+
+  body { background: var(--paper); font-family: 'Fraunces', Georgia, serif; }
+
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 60px;
+  }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--signal);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--signal); }
+
+  /* ── TITLE ── */
+  .title {
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    max-width: 680px;
+    margin-bottom: 64px;
+    color: var(--ink);
+  }
+  .title em { font-style: italic; color: var(--muted); }
+
+  /* ── PHOTO COMPARISON ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--rule);
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+
+  .photo-side {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+
+  .photo-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .photo-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 16px 20px;
+    background: linear-gradient(transparent, rgba(10,10,15,0.85));
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .photo-label-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .photo-label-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.4;
+  }
+  .photo-label-desc strong { font-weight: 700; }
+
+  .divider-v {
+    width: 1px;
+    background: var(--rule);
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+  }
+
+  /* badge on blurry side */
+  .badge-bad {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: rgba(200,50,50,0.85);
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 2px;
+  }
+  .badge-good {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: rgba(0, 212, 160, 0.9);
+    color: #0a0a0f;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 2px;
+  }
+
+  /* params overlay on right side */
+  .params-overlay {
+    position: absolute;
+    top: 16px; right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .param-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10,10,15,0.7);
+    padding: 5px 10px;
+    border-radius: 3px;
+    border-left: 2px solid var(--signal);
+  }
+  .param-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--signal);
+    text-transform: uppercase;
+    min-width: 60px;
+  }
+  .param-bar-wrap { width: 50px; height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; }
+  .param-bar { height: 100%; background: var(--signal); border-radius: 2px; }
+
+  /* ── INSIGHT STRIP ── */
+  .insight {
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr;
+    gap: 0;
+    margin-bottom: 64px;
+  }
+  .insight-divider { background: var(--rule); }
+
+  .insight-block {
+    padding: 40px 40px;
+  }
+  .insight-block.right { border-left: none; }
+
+  .insight-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .insight-icon::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--signal);
+  }
+
+  .insight-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .insight-body {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #4a4a50;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── QUOTE ── */
+  .quote-strip {
+    border-left: 3px solid var(--signal);
+    padding: 32px 40px;
+    background: rgba(0,212,160,0.05);
+  }
+  .quote-text {
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .quote-text strong { font-style: normal; font-weight: 700; }
+  .quote-attr {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 700px) {
+    .section { padding: 60px 24px; }
+    .compare { grid-template-columns: 1fr; }
+    .insight { grid-template-columns: 1fr; }
+    .insight-divider { display: none; }
+    .insight-block { padding: 28px 0; }
+    .quote-strip { padding: 24px 20px; }
+  }
+</style>
+
+<section class="section">
+
+  <div class="eyebrow">Data Philosophy</div>
+
+  <h2 class="title">
+    Great cameras don't fix<br>
+    <em>blurry photos after the shot</em>
+  </h2>
+
+  <!-- PHOTO COMPARISON -->
+  <div class="compare">
+
+    <!-- LEFT: blurry -->
+    <div class="photo-side">
+      <canvas class="photo-canvas" id="blurCanvas"></canvas>
+      <div class="badge-bad">Without Helix</div>
+      <div class="photo-label">
+        <div class="photo-label-title">Post-processing</div>
+        <div class="photo-label-desc"><strong>Noisy signal.</strong> No algorithm recovers what was never captured.</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: sharp -->
+    <div class="photo-side">
+      <canvas class="photo-canvas" id="sharpCanvas"></canvas>
+      <div class="badge-good">Helix · adaptive</div>
+      <div class="params-overlay">
+        <div class="param-row">
+          <span class="param-name">Focus</span>
+          <div class="param-bar-wrap"><div class="param-bar" style="width:90%"></div></div>
+        </div>
+        <div class="param-row">
+          <span class="param-name">Exposure</span>
+          <div class="param-bar-wrap"><div class="param-bar" style="width:72%"></div></div>
+        </div>
+        <div class="param-row">
+          <span class="param-name">Contrast</span>
+          <div class="param-bar-wrap"><div class="param-bar" style="width:85%"></div></div>
+        </div>
+        <div class="param-row">
+          <span class="param-name">Noise</span>
+          <div class="param-bar-wrap"><div class="param-bar" style="width:18%"></div></div>
+        </div>
+      </div>
+      <div class="photo-label">
+        <div class="photo-label-title">Adaptive generation</div>
+        <div class="photo-label-desc"><strong>Clean by design.</strong> Parameters tuned before the data is generated.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INSIGHT BLOCKS -->
+  <div class="insight">
+    <div class="insight-block">
+      <div class="insight-icon">The problem</div>
+      <div class="insight-title">You can't sharpen<br>what was never in focus</div>
+      <div class="insight-body">Most AI tools work downstream — they try to extract signal from noisy data. But if the acquisition was flawed, no model can recover the lost information.</div>
+    </div>
+    <div class="insight-divider"></div>
+    <div class="insight-block right">
+      <div class="insight-icon">The Helix way</div>
+      <div class="insight-title">Adjust before<br>you press the button</div>
+      <div class="insight-body">Helix acts at the moment of data generation — tuning instrument parameters in real time so every run produces the clearest possible signal from the start.</div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-strip">
+    <div class="quote-text">"The quality of your AI is decided <strong>before</strong> the model ever sees a single data point — at the moment of acquisition."</div>
+    <div class="quote-attr">— MendAI Labs · Helix Principle</div>
+  </div>
+
+</section>
+
+<script>
+// Draw abstract "microscopy / mass spec" style images on canvas
+// Blurry = noisy peaks, Sharp = clean peaks
+
+function drawScene(canvas, sharp) {
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth || 480;
+  const H = canvas.offsetHeight || 360;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // Background gradient: dark blue-black
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, sharp ? '#050c18' : '#0a0d12');
+  bg.addColorStop(1, sharp ? '#0a1628' : '#0f1015');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid lines (faint)
+  ctx.strokeStyle = sharp ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.03)';
+  ctx.lineWidth = 0.5;
+  for (let x = 0; x < W; x += 40) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+  }
+  for (let y = 0; y < H; y += 40) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+
+  // Mass-spec style peaks
+  const peaks = [
+    { x: 0.15, h: 0.35, w: 0.04 },
+    { x: 0.28, h: 0.75, w: 0.035 },
+    { x: 0.42, h: 0.55, w: 0.04 },
+    { x: 0.55, h: 0.95, w: 0.03 },
+    { x: 0.65, h: 0.60, w: 0.035 },
+    { x: 0.75, h: 0.40, w: 0.04 },
+    { x: 0.85, h: 0.70, w: 0.03 },
+  ];
+
+  const baseline = H * 0.82;
+
+  peaks.forEach((p, i) => {
+    const cx = p.x * W;
+    const peakH = p.h * H * 0.65;
+    const pw = p.w * W;
+
+    if (sharp) {
+      // Clean sharp peak
+      const grad = ctx.createLinearGradient(cx, baseline - peakH, cx, baseline);
+      grad.addColorStop(0, 'rgba(0,212,160,0.9)');
+      grad.addColorStop(0.5, 'rgba(56,189,248,0.6)');
+      grad.addColorStop(1, 'rgba(29,78,216,0.1)');
+      ctx.beginPath();
+      ctx.moveTo(cx - pw * 2, baseline);
+      ctx.bezierCurveTo(cx - pw, baseline, cx - pw * 0.3, baseline - peakH * 0.1, cx, baseline - peakH);
+      ctx.bezierCurveTo(cx + pw * 0.3, baseline - peakH * 0.1, cx + pw, baseline, cx + pw * 2, baseline);
+      ctx.fillStyle = grad;
+      ctx.fill();
+      // Crisp line
+      ctx.beginPath();
+      ctx.moveTo(cx - pw * 2, baseline);
+      ctx.bezierCurveTo(cx - pw, baseline, cx - pw * 0.3, baseline - peakH * 0.1, cx, baseline - peakH);
+      ctx.bezierCurveTo(cx + pw * 0.3, baseline - peakH * 0.1, cx + pw, baseline, cx + pw * 2, baseline);
+      ctx.strokeStyle = 'rgba(0,212,160,0.8)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    } else {
+      // Blurry noisy peak — wider, jagged, muted
+      const bw = pw * 4;
+      const grad = ctx.createLinearGradient(cx, baseline - peakH * 0.7, cx, baseline);
+      grad.addColorStop(0, 'rgba(100,120,180,0.35)');
+      grad.addColorStop(1, 'rgba(60,80,140,0.05)');
+      ctx.beginPath();
+      ctx.moveTo(cx - bw * 1.5, baseline);
+      // jagged noise
+      const steps = 12;
+      for (let s = 0; s <= steps; s++) {
+        const t = s / steps;
+        const nx = cx - bw * 1.5 + t * bw * 3;
+        const bell = Math.exp(-Math.pow((t - 0.5) * 3.5, 2));
+        const noise = (Math.sin(s * 7.3 + i * 3.1) * 0.18 + Math.cos(s * 13.7) * 0.12) * peakH * 0.7;
+        const ny = baseline - bell * peakH * 0.7 + noise;
+        if (s === 0) ctx.moveTo(nx, ny); else ctx.lineTo(nx, ny);
+      }
+      ctx.lineTo(cx + bw * 1.5, baseline);
+      ctx.fillStyle = grad;
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(100,140,200,0.3)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // noise scatter dots
+      for (let n = 0; n < 30; n++) {
+        const nx = cx - bw + Math.random() * bw * 2;
+        const ny = baseline - Math.random() * peakH * 0.5;
+        ctx.beginPath();
+        ctx.arc(nx, ny, 0.8, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(120,140,200,0.25)';
+        ctx.fill();
+      }
+    }
+  });
+
+  // Baseline
+  ctx.beginPath();
+  ctx.moveTo(0, baseline);
+  ctx.lineTo(W, baseline);
+  ctx.strokeStyle = sharp ? 'rgba(0,212,160,0.2)' : 'rgba(255,255,255,0.07)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // Axis ticks
+  for (let x = 40; x < W; x += 60) {
+    ctx.beginPath();
+    ctx.moveTo(x, baseline);
+    ctx.lineTo(x, baseline + 5);
+    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+    ctx.lineWidth = 0.5;
+    ctx.stroke();
+  }
+
+  if (sharp) {
+    // Label "m/z" axis
+    ctx.fillStyle = 'rgba(0,212,160,0.4)';
+    ctx.font = '10px DM Mono, monospace';
+    ctx.fillText('m/z →', W - 44, baseline + 16);
+  } else {
+    ctx.fillStyle = 'rgba(255,255,255,0.15)';
+    ctx.font = '10px DM Mono, monospace';
+    ctx.fillText('m/z →', W - 44, baseline + 16);
+  }
+}
+
+function init() {
+  const b = document.getElementById('blurCanvas');
+  const s = document.getElementById('sharpCanvas');
+  if (!b || !s) return;
+  drawScene(b, false);
+  drawScene(s, true);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  setTimeout(init, 100);
+}
+window.addEventListener('resize', () => { setTimeout(init, 50); });
+</script>
